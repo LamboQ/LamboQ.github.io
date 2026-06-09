@@ -7,39 +7,25 @@
   <title>秦兰豪 | 个人主页</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei",
         "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
+      color: #222;
+      background: #f5f6f8;
       line-height: 1.75;
-      color: #222;
-      background: #ffffff;
-    }
-
-    h1 {
-      font-size: 40px;
-      margin-bottom: 6px;
-      color: #111;
-    }
-
-    h2 {
-      font-size: 24px;
-      margin-top: 42px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #ddd;
-      color: #111;
-    }
-
-    h3 {
-      font-size: 18px;
-      margin-bottom: 4px;
-      color: #222;
     }
 
     a {
-      color: #0056b3;
+      color: #1f5fbf;
       text-decoration: none;
     }
 
@@ -47,267 +33,448 @@
       text-decoration: underline;
     }
 
-    .subtitle {
-      font-size: 18px;
+    .page {
+      display: flex;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px;
+      gap: 28px;
+    }
+
+    .sidebar {
+      width: 300px;
+      flex: 0 0 300px;
+      position: sticky;
+      top: 28px;
+      align-self: flex-start;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      background: linear-gradient(135deg, #dfe7f5, #f1f3f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      font-weight: 700;
+      color: #3b4a60;
+      border: 1px solid #e5e8ef;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 15px;
       color: #555;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .contact {
-      margin: 18px 0 28px;
+    .info {
+      text-align: left;
+      font-size: 14px;
       color: #333;
-    }
-
-    .tagline {
-      background: #f7f7f7;
-      border-left: 4px solid #555;
-      padding: 16px 20px;
-      margin: 24px 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
+      border-top: 1px solid #eee;
+      padding-top: 16px;
       margin-top: 16px;
     }
 
-    .card {
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 18px 20px;
-      background: #fafafa;
+    .info p {
+      margin: 7px 0;
     }
 
-    .card p {
-      margin-top: 6px;
-      margin-bottom: 0;
+    .nav {
+      margin-top: 22px;
+      border-top: 1px solid #eee;
+      padding-top: 16px;
+      text-align: left;
     }
 
-    ul {
+    .nav a {
+      display: block;
+      padding: 7px 0;
+      color: #333;
+      font-size: 15px;
+    }
+
+    .nav a:hover {
+      color: #1f5fbf;
+      text-decoration: none;
+    }
+
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 30px 34px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: 34px;
+      margin: 0 0 10px;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin: 0 0 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin: 20px 0 6px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    ul, ol {
       padding-left: 22px;
+      margin-top: 8px;
     }
 
     li {
       margin-bottom: 8px;
     }
 
-    .pub-title {
-      font-weight: 600;
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
     }
 
-    .note {
+    .tag {
+      background: #edf2fb;
+      color: #24436b;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .card {
+      border: 1px solid #e6e8ee;
+      border-radius: 12px;
+      padding: 16px 18px;
+      background: #fbfcfe;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 17px;
+    }
+
+    .meta {
       color: #666;
       font-size: 14px;
+    }
+
+    .pub {
+      margin-bottom: 18px;
+    }
+
+    .pub-title {
+      font-weight: 700;
+    }
+
+    .pub-info {
+      color: #444;
+      margin-top: 2px;
+    }
+
+    .links {
+      margin-top: 4px;
+      font-size: 14px;
+    }
+
+    .highlight {
+      background: #f7f9fc;
+      border-left: 4px solid #4a6fa5;
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 14px 0;
     }
 
     .footer {
-      margin-top: 56px;
-      padding-top: 18px;
-      border-top: 1px solid #ddd;
-      color: #666;
-      font-size: 14px;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+      padding: 12px 0 24px;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        flex-direction: column;
+        padding: 18px 14px;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex: none;
+        position: static;
+      }
+
+      section {
+        padding: 24px 20px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <h1>秦兰豪</h1>
+  <div class="page">
 
-  <div class="subtitle">
-    材料与器件研发 | 忆阻器 | 二维材料 | 神经形态硬件
-  </div>
+    <aside class="sidebar">
+      <div class="avatar">秦</div>
 
-  <div class="contact">
-    邮箱：<a href="mailto:your-email@example.com">your-email@example.com</a> |
-    GitHub：<a href="https://github.com/LamboQ">LamboQ</a> |
-    Google Scholar：<a href="#">链接</a> |
-    ORCID：<a href="#">链接</a> |
-    ResearchGate：<a href="#">链接</a>
-  </div>
+      <div class="name">秦兰豪</div>
 
-  <div class="tagline">
-    我即将获得材料科学与工程博士学位，研究方向聚焦于忆阻器、二维材料、神经形态器件与低功耗智能硬件。
-    我的工作围绕新型材料体系、器件构筑、电学表征、阻变机制分析和器件-算法协同设计展开，目标是推动新型存储与类脑计算器件从材料发现走向可靠器件和系统应用。
-  </div>
+      <div class="title">
+        材料科学与工程博士<br />
+        忆阻器 · 二维材料 · 神经形态硬件
+      </div>
 
-  <h2>个人简介</h2>
+      <div class="info">
+        <p><strong>邮箱：</strong><a href="mailto:your-email@example.com">your-email@example.com</a></p>
+        <p><strong>GitHub：</strong><a href="https://github.com/LamboQ">LamboQ</a></p>
+        <p><strong>Google Scholar：</strong><a href="#">链接待补充</a></p>
+        <p><strong>ORCID：</strong><a href="#">链接待补充</a></p>
+        <p><strong>ResearchGate：</strong><a href="#">链接待补充</a></p>
+      </div>
 
-  <p>
-    我的研究横跨材料、器件和系统应用三个层次，主要关注新型忆阻材料体系的可控阻变行为、低功耗器件构筑、可靠性分析以及神经形态计算应用。
-    在研究过程中，我积累了从材料制备、微纳器件加工、电学测试、结构表征、数据分析到系统级仿真的完整科研训练。
-  </p>
+      <nav class="nav">
+        <a href="#about">个人简介</a>
+        <a href="#interests">研究方向</a>
+        <a href="#education">教育经历</a>
+        <a href="#experience">科研经历</a>
+        <a href="#publications">代表论文</a>
+        <a href="#projects">项目与技能</a>
+        <a href="#honors">荣誉奖励</a>
+        <a href="#contact">联系方式</a>
+      </nav>
+    </aside>
 
-  <p>
-    除学术研究外，我也关注面向产业应用的器件研发问题，包括半导体器件、先进材料、存储器件、工艺集成、可靠性分析、器件建模以及 AI 硬件等方向。
-  </p>
+    <main class="content">
 
-  <h2>研究方向</h2>
+      <section id="about">
+        <h1>秦兰豪</h1>
 
-  <div class="grid">
-    <div class="card">
-      <h3>忆阻器与新型存储器件</h3>
-      <p>
-        低电压阻变、易失/非易失存储、脉冲调控、多级电导、保持特性、循环稳定性、器件离散性与统计分析。
-      </p>
-    </div>
+        <p>
+          我即将获得材料科学与工程博士学位，研究方向聚焦于忆阻器、二维材料、神经形态器件与低功耗智能硬件。
+          我的研究围绕新型材料体系、器件构筑、电学表征、阻变机制分析和器件-算法协同设计展开，目标是推动新型存储与类脑计算器件从材料发现走向可靠器件和系统应用。
+        </p>
 
-    <div class="card">
-      <h3>二维材料与范德华器件</h3>
-      <p>
-        二维层状材料、范德华异质结构、电子/光电子器件、材料结构与器件性能之间的关联。
-      </p>
-    </div>
+        <div class="highlight">
+          目前我关注的方向包括：半导体器件研发、先进功能材料、新型存储器件、工艺集成、器件可靠性分析、忆阻器建模、AI 硬件与神经形态计算。
+        </div>
 
-    <div class="card">
-      <h3>神经形态计算硬件</h3>
-      <p>
-        忆阻突触、储备池计算、脉冲神经网络、器件-算法协同设计以及面向边缘智能的低功耗计算。
-      </p>
-    </div>
+        <div class="keywords">
+          <span class="tag">忆阻器</span>
+          <span class="tag">二维材料</span>
+          <span class="tag">神经形态计算</span>
+          <span class="tag">低功耗器件</span>
+          <span class="tag">半导体器件</span>
+          <span class="tag">器件可靠性</span>
+          <span class="tag">Python 数据分析</span>
+          <span class="tag">LTspice 建模</span>
+        </div>
+      </section>
 
-    <div class="card">
-      <h3>器件可靠性与建模</h3>
-      <p>
-        器件统计分析、脉冲响应提取、紧凑模型参数整理、LTspice 仿真准备以及可靠性导向的系统评估。
-      </p>
-    </div>
-  </div>
+      <section id="interests">
+        <h2>研究方向</h2>
 
-  <h2>代表性研究亮点</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>忆阻器与新型存储器件</h3>
+            <p>
+              关注低电压阻变、易失/非易失存储、脉冲调控、多级电导、保持特性、循环稳定性、器件离散性与统计分析。
+            </p>
+          </div>
 
-  <div class="card">
-    <h3>低功耗忆阻器件及其边缘智能应用</h3>
-    <p>
-      围绕低电压、低功耗忆阻器件开展研究，系统分析器件的直流阻变、脉冲开关、保持特性、循环稳定性和多级调控行为，
-      并进一步探索其在存算一体和边缘智能硬件中的应用潜力。
-    </p>
-  </div>
+          <div class="card">
+            <h3>二维材料与范德华器件</h3>
+            <p>
+              研究二维层状材料、范德华异质结构、电子/光电子器件，以及材料结构与器件性能之间的关联。
+            </p>
+          </div>
 
-  <br />
+          <div class="card">
+            <h3>神经形态计算硬件</h3>
+            <p>
+              探索忆阻突触、储备池计算、脉冲神经网络、器件-算法协同设计，以及面向边缘智能的低功耗计算。
+            </p>
+          </div>
 
-  <div class="card">
-    <h3>面向神经形态感知的器件-算法协同设计</h3>
-    <p>
-      构建从实测器件响应到神经网络任务的仿真流程，将器件非理想性、电导波动、读噪声和脉冲响应等因素映射到系统级性能评估中，
-      用于分析忆阻器件在类脑感知任务中的可用性和鲁棒性。
-    </p>
-  </div>
+          <div class="card">
+            <h3>器件可靠性与建模</h3>
+            <p>
+              开展器件统计分析、脉冲响应提取、紧凑模型参数整理、LTspice 仿真准备以及可靠性导向的系统评估。
+            </p>
+          </div>
+        </div>
+      </section>
 
-  <br />
+      <section id="education">
+        <h2>教育经历</h2>
 
-  <div class="card">
-    <h3>面向集成应用的新型材料与器件分析</h3>
-    <p>
-      研究新型材料体系在忆阻器件中的阻变机制、结构稳定性和集成潜力，结合电学测试、微观表征和统计分析，
-      评估材料体系向高密度、低功耗、可扩展器件发展的可能性。
-    </p>
-  </div>
+        <h3>华中科技大学</h3>
+        <p class="meta">材料科学与工程，博士研究生</p>
+        <ul>
+          <li>研究方向：忆阻器、二维材料、神经形态器件与低功耗智能硬件。</li>
+          <li>围绕材料设计、器件制备、电学测试、结构表征、数据分析和系统仿真开展交叉研究。</li>
+        </ul>
+      </section>
 
-  <h2>项目经历</h2>
+      <section id="experience">
+        <h2>科研经历</h2>
 
-  <ul>
-    <li>
-      <strong>忆阻器电学表征与可靠性分析：</strong>
-      开展直流 I–V、脉冲写擦、保持、循环、多级电导和器件统计测试，分析器件的开关窗口、阈值分布、循环稳定性和失效特征。
-    </li>
+        <h3>新型忆阻材料与低功耗存储器件研究</h3>
+        <p class="meta">博士阶段主要研究方向</p>
+        <p>
+          围绕新型忆阻材料体系开展器件构筑和机制研究，系统分析器件的直流阻变、脉冲开关、保持特性、循环稳定性、多级调控和器件统计分布。
+        </p>
 
-    <li>
-      <strong>神经形态器件与系统仿真：</strong>
-      将实测忆阻器件特性引入神经网络仿真，构建器件到系统的映射流程，评估器件非理想性对分类准确率和系统鲁棒性的影响。
-    </li>
+        <h3>器件-算法协同的神经形态硬件研究</h3>
+        <p class="meta">材料器件与系统应用交叉方向</p>
+        <p>
+          构建从实测器件响应到神经网络任务的仿真流程，将器件非理想性、电导波动、读噪声和脉冲响应等因素映射到系统级性能评估中。
+        </p>
 
-    <li>
-      <strong>实验数据处理与图件生成：</strong>
-      使用 Python 对电学测试数据进行批量提取、归一化、统计分析和可视化，形成可用于论文、汇报和进一步建模的数据流程。
-    </li>
+        <h3>面向集成应用的材料与器件可靠性分析</h3>
+        <p class="meta">面向产业研发的问题导向</p>
+        <p>
+          关注新型器件在工艺兼容性、可靠性、统计一致性、阵列扩展性和电路仿真方面的关键问题，推动材料与器件结果向工程应用场景转化。
+        </p>
+      </section>
 
-    <li>
-      <strong>器件建模与电路仿真准备：</strong>
-      整理忆阻器件关键物理和电学参数，面向 LTspice 等电路仿真环境进行模型参数提取和 1T1R 集成仿真准备。
-    </li>
-  </ul>
+      <section id="publications">
+        <h2>代表论文</h2>
 
-  <h2>代表性论文</h2>
+        <div class="pub">
+          <div class="pub-title">[1] 论文题目待补充</div>
+          <div class="pub-info">秦兰豪 等，<em>期刊名称</em>，年份。</div>
+          <div class="links">[<a href="#">论文链接</a>] [<a href="#">DOI</a>] [<a href="#">项目说明</a>]</div>
+        </div>
 
-  <ol>
-    <li>
-      <span class="pub-title">秦兰豪</span> 等，
-      “论文题目”，<em>期刊名称</em>，年份。
-      <span class="note">[请替换为真实论文信息]</span>
-    </li>
+        <div class="pub">
+          <div class="pub-title">[2] 论文题目待补充</div>
+          <div class="pub-info">秦兰豪 等，<em>期刊名称</em>，年份。</div>
+          <div class="links">[<a href="#">论文链接</a>] [<a href="#">DOI</a>]</div>
+        </div>
 
-    <li>
-      <span class="pub-title">秦兰豪</span> 等，
-      “论文题目”，<em>期刊名称</em>，年份。
-      <span class="note">[请替换为真实论文信息]</span>
-    </li>
+        <div class="pub">
+          <div class="pub-title">[3] 论文题目待补充</div>
+          <div class="pub-info">秦兰豪 等，<em>期刊名称</em>，年份。</div>
+          <div class="links">[<a href="#">论文链接</a>] [<a href="#">DOI</a>]</div>
+        </div>
 
-    <li>
-      <span class="pub-title">秦兰豪</span> 等，
-      “论文题目”，<em>期刊名称</em>，年份。
-      <span class="note">[请替换为真实论文信息]</span>
-    </li>
-  </ol>
+        <p>
+          完整论文列表可见：
+          <a href="#">Google Scholar</a>、<a href="#">ORCID</a> 或 <a href="#">ResearchGate</a>。
+        </p>
+      </section>
 
-  <p>
-    完整论文列表可见：
-    <a href="#">Google Scholar</a>、<a href="#">ORCID</a> 或 <a href="#">ResearchGate</a>。
-  </p>
+      <section id="projects">
+        <h2>项目与技能</h2>
 
-  <h2>技术能力</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>忆阻器电学表征</h3>
+            <p>
+              直流 I–V、脉冲写擦、保持、循环、多级电导、器件统计、阈值分布和可靠性分析。
+            </p>
+          </div>
 
-  <div class="grid">
-    <div class="card">
-      <h3>材料与器件制备</h3>
-      <p>
-        二维材料、薄膜器件、金属电极、垂直器件结构、微纳器件构筑及面向集成的实验设计。
-      </p>
-    </div>
+          <div class="card">
+            <h3>神经形态系统仿真</h3>
+            <p>
+              将实测器件特性引入神经网络仿真，评估器件非理想性对分类准确率和系统鲁棒性的影响。
+            </p>
+          </div>
 
-    <div class="card">
-      <h3>电学与结构表征</h3>
-      <p>
-        半导体参数分析、脉冲测试、AFM/CAFM、TEM/EDS、器件统计、可靠性分析和机制验证。
-      </p>
-    </div>
+          <div class="card">
+            <h3>数据处理与图件生成</h3>
+            <p>
+              使用 Python 对电学数据进行批量提取、归一化、统计分析和可视化，形成可复用的数据流程。
+            </p>
+          </div>
 
-    <div class="card">
-      <h3>数据分析与仿真</h3>
-      <p>
-        Python 数据处理、Origin 作图、神经网络仿真、忆阻器建模、LTspice 参数整理与可视化分析。
-      </p>
-    </div>
+          <div class="card">
+            <h3>器件建模与电路仿真</h3>
+            <p>
+              整理忆阻器关键参数，面向 LTspice 等电路仿真环境进行模型参数提取和 1T1R 集成仿真准备。
+            </p>
+          </div>
+        </div>
 
-    <div class="card">
-      <h3>科研表达与项目推进</h3>
-      <p>
-        学术论文写作、科技图件制作、文献调研、技术汇报、跨学科沟通和科研项目协同推进。
-      </p>
-    </div>
-  </div>
+        <h3>技术能力</h3>
+        <ul>
+          <li>材料与器件：二维材料、薄膜器件、金属电极、垂直器件结构、微纳器件构筑。</li>
+          <li>电学与结构表征：半导体参数分析、脉冲测试、AFM/CAFM、TEM/EDS、器件统计和机制验证。</li>
+          <li>数据与仿真：Python、Origin、神经网络仿真、忆阻器建模、LTspice 参数整理。</li>
+          <li>科研表达：学术论文写作、科技图件制作、文献调研、技术汇报和跨学科协作。</li>
+        </ul>
+      </section>
 
-  <h2>教育经历</h2>
+      <section id="honors">
+        <h2>荣誉奖励</h2>
 
-  <p>
-    <strong>华中科技大学，材料科学与工程，博士研究生</strong><br />
-    研究方向：忆阻器、二维材料、神经形态器件与低功耗智能硬件。
-  </p>
+        <ul>
+          <li>荣誉/奖励名称，年份。</li>
+          <li>会议报告/口头报告/优秀论文奖，年份。</li>
+          <li>专利/竞赛/奖学金等，年份。</li>
+        </ul>
+      </section>
 
-  <h2>简历与联系方式</h2>
+      <section id="contact">
+        <h2>联系方式</h2>
 
-  <p>
-    欢迎就学术合作、博士后机会、半导体/材料/器件研发岗位、AI 硬件与神经形态计算方向进行交流。
-  </p>
+        <p>
+          欢迎就学术合作、博士后机会、半导体/材料/器件研发岗位、AI 硬件与神经形态计算方向进行交流。
+        </p>
 
-  <p>
-    邮箱：<a href="mailto:your-email@example.com">your-email@example.com</a>
-  </p>
+        <p>
+          邮箱：<a href="mailto:your-email@example.com">your-email@example.com</a>
+        </p>
 
-  <div class="footer">
-    最近更新：2026 年 6 月。<br />
-    本主页由秦兰豪维护。
+        <p>
+          GitHub：<a href="https://github.com/LamboQ">https://github.com/LamboQ</a>
+        </p>
+      </section>
+
+      <div class="footer">
+        最近更新：2026 年 6 月。本站由秦兰豪维护。
+      </div>
+
+    </main>
   </div>
 
 </body>
