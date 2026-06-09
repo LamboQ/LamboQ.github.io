@@ -1,2 +1,2 @@
-# LanhaoQin.github.io
+# LamboQ.github.io
 Personal homepage for research, publications, and projects.
